@@ -19,7 +19,7 @@ def adaboost(data: List, T: int):
     n = len(y)
     m = len(y[y == 0])
     l = n - m
-
+    
     w = np.ones_like(y)
     w[y == 1] /= l
     w[y == 0] /= m

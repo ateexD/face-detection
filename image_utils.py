@@ -1,5 +1,6 @@
 import cv2
 import numpy as np
+from numba import jit
 
 from collections import Counter
 
@@ -52,7 +53,6 @@ def integral_image(img: np.ndarray) -> np.ndarray:
     integral_image[1:, 1:, :] = img.cumsum(0).cumsum(1)
 
     return integral_image
-
 
 def get_integral_sum_box(integral_img: np.ndarray, box: box) -> float:
     """Same as get_integral_sum but with box
@@ -148,10 +148,11 @@ def get_features(img: np.ndarray) -> list:
                             box3 = get_integral_sum_box(integral_img, box(i, j + l // 2, k // 2, l // 2))
                             box4 = get_integral_sum_box(integral_img, box(i + k // 2, j + l // 2, k // 2, l // 2))
                             features.append(box1 - box2 - box3 + box4)
-
+                    
     return features
 
 if __name__ == "__main__":
     img = cv2.imread("/Users/ateendraramesh/Downloads/face.png")
-    features = np.array(get_features(np.ones((24, 24))))
+    features = np.array(get_features(np.ones((15, 15))))
+    print(features.shape)
     
