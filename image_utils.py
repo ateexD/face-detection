@@ -6,7 +6,8 @@ from collections import Counter
 
 class box:
     def __init__(self, x: int, y: int, l: int, b: int):
-        """A box in the integral image, given start points and dimensions.
+        """
+        A box in the integral image, given start points and dimensions.
 
         Arguments:
             x {int} -- x co-ordinate of origin 
@@ -26,7 +27,8 @@ class box:
 
 
 def integral_image(img: np.ndarray) -> np.ndarray:
-    """This function returns the integral image for a given image.
+    """
+    This function returns the integral image for a given image.
 
     Referred - https://stackoverflow.com/questions/25557973/efficient-summed-area-table-calculation-with-numpy
 
@@ -55,7 +57,8 @@ def integral_image(img: np.ndarray) -> np.ndarray:
     return integral_image
 
 def get_integral_sum_box(integral_img: np.ndarray, box: box) -> float:
-    """Same as get_integral_sum but with box
+    """
+    Same as get_integral_sum but with box
 
     Arguments:
         integral_image {np.ndarray} -- The integral image
@@ -68,7 +71,8 @@ def get_integral_sum_box(integral_img: np.ndarray, box: box) -> float:
 
 
 def get_integral_sum(integral_img: np.ndarray, x: int, y: int, h: int, w: int) -> float:
-    """Gets summation of a table in the integral image
+    """
+    Gets summation of a table in the integral image
 
     Arguments:
         integral_img {np.ndarray} -- The integral image
@@ -90,7 +94,8 @@ def get_integral_sum(integral_img: np.ndarray, x: int, y: int, h: int, w: int) -
         return feature
 
 def get_features(img: np.ndarray) -> list:
-    """This computes the features, given the rectangular boxes
+    """
+    This computes the features, given the rectangular boxes
 
     Arguments:
         img {np.ndarray} -- Input image 
