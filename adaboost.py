@@ -14,8 +14,8 @@ def get_theta_and_parity(feature_col: np.ndarray, y: np.ndarray, w: np.ndarray) 
     feature_col = feature_col.flatten()
     sorted_indices = np.argsort(feature_col)
 
-    feature_col, y = feature_col[sorted_indices], y[sorted_indices]
-    w = w[sorted_indices]
+    feature_col, y = feature_col.copy()[sorted_indices], y.copy()[sorted_indices]
+    w = w.copy()[sorted_indices]
     
     # Referred from https://stackoverflow.com/questions/39109848/viola-jones-threshold-value-haar-features-error-value
     s_p, s_m, t_p, t_m = 0, 0, 0, 0
@@ -72,7 +72,6 @@ def adaboost(data: list, T: int) -> dict:
     w = np.ones_like(y, dtype=np.float32)
     w[y == 1] *= 1 / (2. * l)
     w[y == 0] *= 1 / (2. * m)
-    w /= np.sum(w)
 
     error_so_far = 1e10
 
@@ -81,24 +80,24 @@ def adaboost(data: list, T: int) -> dict:
     classifier_list = []
     
     for t in range(T):
+        w /= np.sum(w)
         for i in range(x.shape[1]):
             feature_col = x[:, i]
             theta, parity = get_theta_and_parity(feature_col, y, w)
             error = 0.
-            
+
             for j in range(x.shape[0]):
                 if parity * theta > parity * feature_col[j]:
                     pred = 1
                 else:
                     pred = 0
-                
                 error += np.abs(pred - y[j]) * w[j]
 
             if error < error_so_far:
                 cache["theta"] = theta
                 cache["parity"] = parity
                 cache["error"] = error
-                cache["index"] = j
+                cache["index"] = i
                 error_so_far = error
 
         beta = cache["error"] / (1 - cache["error"])
@@ -110,8 +109,8 @@ def adaboost(data: list, T: int) -> dict:
                 pred = 1
             else:
                 pred = 0
-            error = np.abs(pred - y)
-            w[i] *= beta ** (1 - cache["error"])
+            error = np.abs(pred - y[i])
+            w[i] *= beta ** (1 - error)
         
         classifier_dict = {
             "theta": theta,
@@ -121,6 +120,7 @@ def adaboost(data: list, T: int) -> dict:
             "weights": w
         }
         classifier_list.append(classifier_dict)
+    print(classifier_list)
     return classifier_list
 
 
