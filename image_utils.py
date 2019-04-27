@@ -154,10 +154,4 @@ def get_features(img: np.ndarray) -> list:
                             box4 = get_integral_sum_box(integral_img, box(i + k // 2, j + l // 2, k // 2, l // 2))
                             features.append(box1 - box2 - box3 + box4)
                     
-    return features
-
-if __name__ == "__main__":
-    img = cv2.imread("/Users/ateendraramesh/Downloads/face.png")
-    features = np.array(get_features(np.ones((15, 15))))
-    print(features.shape)
-    
+    return features    

@@ -69,10 +69,11 @@ def adaboost(data: list, T: int) -> dict:
     n = len(y)
     m = len(y[y == 0])
     l = n - m
-    
-    w = np.ones_like(y)
-    w[y == 1] /= (2. * l)
-    w[y == 0] /= (2. * m)
+    w = np.ones_like(y, dtype=np.float32)
+    w[y == 1] *= 1 / (2. * l)
+    w[y == 0] *= 1 / (2. * m)
+    w /= np.sum(w)
+
     error_so_far = 1e10
 
     cache = {}
@@ -80,9 +81,6 @@ def adaboost(data: list, T: int) -> dict:
     classifier_list = []
     
     for t in range(T):
-
-        w /= np.sum(w)
-
         for i in range(x.shape[1]):
             feature_col = x[:, i]
             theta, parity = get_theta_and_parity(feature_col, y, w)
@@ -93,14 +91,15 @@ def adaboost(data: list, T: int) -> dict:
                     pred = 1
                 else:
                     pred = 0
-                error += np.abs(pred - y) * w[j]
-            
-                if error < error_so_far:
-                    cache["theta"] = theta
-                    cache["parity"] = parity
-                    cache["error"] = error
-                    cache["index"] = j
-                    error_so_far = error
+                
+                error += np.abs(pred - y[j]) * w[j]
+
+            if error < error_so_far:
+                cache["theta"] = theta
+                cache["parity"] = parity
+                cache["error"] = error
+                cache["index"] = j
+                error_so_far = error
 
         beta = cache["error"] / (1 - cache["error"])
         alpha = np.log(1 / beta)
@@ -112,16 +111,17 @@ def adaboost(data: list, T: int) -> dict:
             else:
                 pred = 0
             error = np.abs(pred - y)
-            w[i] *= beta ** (1 - error)
+            w[i] *= beta ** (1 - cache["error"])
         
         classifier_dict = {
             "theta": theta,
             "alpha": alpha,
             "parity": parity,
-            "index": cache["index"]
+            "index": cache["index"],
+            "weights": w
         }
         classifier_list.append(classifier_dict)
-        return classifier_list
+    return classifier_list
 
 
 
