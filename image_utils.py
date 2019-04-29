@@ -116,7 +116,8 @@ def get_features(img: np.ndarray) -> list:
                      [1, 3], 
                      [2, 2]]
 
-    c1, c2, c3, c4, c5 = 0, 0, 0, 0, 0
+    feature_dict = {}
+
     count = 0
     for f in feature_shape:
         x, y = f[0], f[1]
@@ -124,34 +125,64 @@ def get_features(img: np.ndarray) -> list:
             for j in range(n - y + 1):
                 for k in range(x, m - i, x):
                     for l in range(y, n - j, y):
-                        count += 1
                         if f == [2, 1]:
-                            box1 = get_integral_sum_box(integral_img, box(i, j, k // 2, l))
-                            box2 = get_integral_sum_box(integral_img, box(i + k // 2, j, k // 2, l))
+                            box1 = box(i, j, k // 2, l)
+                            box2 = box(i + k // 2, j, k // 2, l)
+                            feature_dict[count] = [box1, box2]
+
+                            box1 = get_integral_sum_box(integral_img, box1)
+                            box2 = get_integral_sum_box(integral_img, box2)
+
                             features.append(box1 - box2)
 
                         if f == [1, 2]:
-                            box1 = get_integral_sum_box(integral_img, box(i, j, k, l // 2))
-                            box2 = get_integral_sum_box(integral_img, box(i, j + l // 2, k, l // 2))
+                            box1 = box(i, j, k, l // 2)
+                            box2 = box(i, j + l // 2, k, l // 2)
+                            feature_dict[count] = [box1, box2]
+
+                            box1 = get_integral_sum_box(integral_img, box1)
+                            box2 = get_integral_sum_box(integral_img, box2)
+
                             features.append(box2 - box1)
                         
                         if f == [3, 1]:
-                            box1 = get_integral_sum_box(integral_img, box(i, j, k // 3, l))
-                            box2 = get_integral_sum_box(integral_img, box(i + k // 3, j, k // 3, l))
-                            box3 = get_integral_sum_box(integral_img, box(i + 2 * k // 3, j, k // 3, l))
+                            box1 = box(i, j, k // 3, l)
+                            box2 = box(i + k // 3, j, k // 3, l)
+                            box3 = box(i + 2 * k // 3, j, k // 3, l)
+
+                            feature_dict[count] = [box1, box2, box3]
+
+                            box1 = get_integral_sum_box(integral_img, box1)
+                            box2 = get_integral_sum_box(integral_img, box2)
+                            box3 = get_integral_sum_box(integral_img, box3)
+                            
                             features.append(box2 - box1 - box3)
                         
                         if f == [1, 3]:
-                            box1 = get_integral_sum_box(integral_img, box(i, j, k, l // 3))
-                            box2 = get_integral_sum_box(integral_img, box(i, j + l // 3 , k, l // 3))
-                            box3 = get_integral_sum_box(integral_img, box(i, j + 2 * l // 3, k, l // 3))
+                            box1 = box(i, j, k, l // 3)
+                            box2 = box(i, j + l // 3 , k, l // 3)
+                            box3 = box(i, j + 2 * l // 3, k, l // 3)
+                            feature_dict[count] = [box1, box2, box3]
+
+                            box1 = get_integral_sum_box(integral_img, box1)
+                            box2 = get_integral_sum_box(integral_img, box2)
+                            box3 = get_integral_sum_box(integral_img, box3)
+
                             features.append(box2 - box1 - box3)
                         
                         if f == [2, 2]:
-                            box1 = get_integral_sum_box(integral_img, box(i, j, k // 2, l // 2))
-                            box2 = get_integral_sum_box(integral_img, box(i + k // 2, j, k // 2, l // 2))
-                            box3 = get_integral_sum_box(integral_img, box(i, j + l // 2, k // 2, l // 2))
-                            box4 = get_integral_sum_box(integral_img, box(i + k // 2, j + l // 2, k // 2, l // 2))
+                            box1 = box(i, j, k // 2, l // 2)
+                            box2 = box(i + k // 2, j, k // 2, l // 2)
+                            box3 = box(i, j + l // 2, k // 2, l // 2)
+                            box4 = box(i + k // 2, j + l // 2, k // 2, l // 2)
+
+                            feature_dict[count] = [box1, box2, box3, box4]
+
+                            box1 = get_integral_sum_box(integral_img, box1)
+                            box2 = get_integral_sum_box(integral_img, box2)
+                            box3 = get_integral_sum_box(integral_img, box3)
+                            box4 = get_integral_sum_box(integral_img, box4)
+
                             features.append(box1 - box2 - box3 + box4)
-                    
-    return features    
+                        count += 1
+    return features, feature_dict

@@ -86,12 +86,8 @@ def adaboost(data: list, T: int) -> dict:
             theta, parity = get_theta_and_parity(feature_col, y, w)
             error = 0.
 
-            for j in range(x.shape[0]):
-                if parity * theta > parity * feature_col[j]:
-                    pred = 1
-                else:
-                    pred = 0
-                error += np.abs(pred - y[j]) * w[j]
+            parity_arr = (parity * theta > parity * feature_col) * 1.
+            error = np.sum(np.abs(parity_arr - y) * w)
 
             if error < error_so_far:
                 cache["theta"] = theta

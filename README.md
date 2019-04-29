@@ -5,6 +5,6 @@ This repo consists of the code for facial detection based on the Viola Jones alg
 
 ### TODO
 - [x] Implement the integral image matrix
-- [ ] Implement ADABoost
+- [x] Implement ADABoost
 - [ ] Implement the cascading algorithm
 
