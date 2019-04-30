@@ -128,7 +128,7 @@ def get_features(img: np.ndarray) -> list:
                         if f == [2, 1]:
                             box1 = box(i, j, k // 2, l)
                             box2 = box(i + k // 2, j, k // 2, l)
-                            feature_dict[count] = [box1, box2]
+                            feature_dict[count] = [f, [box1, box2]]
 
                             box1 = get_integral_sum_box(integral_img, box1)
                             box2 = get_integral_sum_box(integral_img, box2)
@@ -138,7 +138,7 @@ def get_features(img: np.ndarray) -> list:
                         if f == [1, 2]:
                             box1 = box(i, j, k, l // 2)
                             box2 = box(i, j + l // 2, k, l // 2)
-                            feature_dict[count] = [box1, box2]
+                            feature_dict[count] = [f, [box1, box2]]
 
                             box1 = get_integral_sum_box(integral_img, box1)
                             box2 = get_integral_sum_box(integral_img, box2)
@@ -150,7 +150,7 @@ def get_features(img: np.ndarray) -> list:
                             box2 = box(i + k // 3, j, k // 3, l)
                             box3 = box(i + 2 * k // 3, j, k // 3, l)
 
-                            feature_dict[count] = [box1, box2, box3]
+                            feature_dict[count] = [f, [box1, box2, box3]]
 
                             box1 = get_integral_sum_box(integral_img, box1)
                             box2 = get_integral_sum_box(integral_img, box2)
@@ -162,7 +162,7 @@ def get_features(img: np.ndarray) -> list:
                             box1 = box(i, j, k, l // 3)
                             box2 = box(i, j + l // 3 , k, l // 3)
                             box3 = box(i, j + 2 * l // 3, k, l // 3)
-                            feature_dict[count] = [box1, box2, box3]
+                            feature_dict[count] = [f, [box1, box2, box3]]
 
                             box1 = get_integral_sum_box(integral_img, box1)
                             box2 = get_integral_sum_box(integral_img, box2)
@@ -176,7 +176,7 @@ def get_features(img: np.ndarray) -> list:
                             box3 = box(i, j + l // 2, k // 2, l // 2)
                             box4 = box(i + k // 2, j + l // 2, k // 2, l // 2)
 
-                            feature_dict[count] = [box1, box2, box3, box4]
+                            feature_dict[count] = [f, [box1, box2, box3, box4]]
 
                             box1 = get_integral_sum_box(integral_img, box1)
                             box2 = get_integral_sum_box(integral_img, box2)

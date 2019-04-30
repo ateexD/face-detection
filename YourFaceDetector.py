@@ -9,7 +9,7 @@ np.random.seed(0)
 data = (pd.read_pickle("~/Downloads/training.pkl"))
 np.random.shuffle(data)
 
-features = [get_features(data[i][0]) for i in range(200)]
+features = [get_features(data[i][0])[0] for i in range(200)]
 x = np.array(features)
 y = np.array([data[i][1] for i in range(200)])
 
@@ -17,7 +17,7 @@ weak_classifiers = adaboost((x, y), 3)
 
 y_pred = []
 
-xtest = [get_features(data[i][0]) for i in range(200, 225)]
+xtest = [get_features(data[i][0])[0] for i in range(200, 225)]
 xtest = np.array(xtest)
 y_test = np.array([data[i][1] for i in range(200, 225)])
 
