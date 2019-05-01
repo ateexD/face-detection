@@ -1,12 +1,12 @@
-import numpy as np 
+import numpy as np
 
 def get_theta_and_parity(feature_col: np.ndarray, y: np.ndarray, w: np.ndarray) -> tuple:
     """
-    
+
     Arguments:
-        feature_col {np.ndarray} -- A column of features 
+        feature_col {np.ndarray} -- A column of features
         y {np.ndarray}
-    
+
     Returns:
         tuple -- A tuple of epsilon and parity
     """
@@ -16,7 +16,7 @@ def get_theta_and_parity(feature_col: np.ndarray, y: np.ndarray, w: np.ndarray) 
 
     feature_col, y = feature_col.copy()[sorted_indices], y.copy()[sorted_indices]
     w = w.copy()[sorted_indices]
-    
+
     # Referred from https://stackoverflow.com/questions/39109848/viola-jones-threshold-value-haar-features-error-value
     s_p, s_m, t_p, t_m = 0, 0, 0, 0
 
@@ -31,7 +31,7 @@ def get_theta_and_parity(feature_col: np.ndarray, y: np.ndarray, w: np.ndarray) 
             t_m += w[i]
         s_m_list.append(s_m)
         s_p_list.append(s_p)
-    
+
     error = 1e10
     theta, parity = 0, 0
 
@@ -51,12 +51,12 @@ def get_theta_and_parity(feature_col: np.ndarray, y: np.ndarray, w: np.ndarray) 
 
 def adaboost(data: list, T: int) -> dict:
     """
-    This is an implementation of the AdaBoost algorithm mentioned in the 
+    This is an implementation of the AdaBoost algorithm mentioned in the
     Viola-Jones paper.
-    
+
     Arguments:
         data {List} -- Right now, a tuple of x & y
-        T {int} -- Number of features needed 
+        T {int} -- Number of features needed
 
     Returns:
         classifier_list -- List of weak classifiers
@@ -70,15 +70,15 @@ def adaboost(data: list, T: int) -> dict:
     m = len(y[y == 0])
     l = n - m
     w = np.ones_like(y, dtype=np.float32)
-    w[y == 1] *= 1 / (2. * l)
-    w[y == 0] *= 1 / (2. * m)
+    w[y == 1] *= 1 / (2. * l + 1)
+    w[y == 0] *= 1 / (2. * m + 1)
 
     error_so_far = 1e10
 
     cache = {}
 
     classifier_list = []
-    
+
     for t in range(T):
         w /= np.sum(w)
         for i in range(x.shape[1]):
@@ -100,20 +100,26 @@ def adaboost(data: list, T: int) -> dict:
         alpha = np.log(1 / beta)
 
         parity, theta = cache["parity"], cache["theta"]
-        for i in range(x.shape[0]):
-            if parity * theta > parity * x[i, cache["index"]]:
-                pred = 1
-            else:
-                pred = 0
-            error = np.abs(pred - y[i])
-            w[i] *= beta ** (1 - error)
-        
+
+
+        pred = parity * theta > parity * x[:, cache["index"]] * 1.
+        error = np.abs(pred - y)
+        w = w * np.power(beta, 1 - error)
+
+
+        #for i in range(x.shape[0]):
+        #    if parity * theta > parity * x[i, cache["index"]]:
+        #        pred = 1
+        #    else:
+        #        pred = 0
+        #    error = np.abs(pred - y[i])
+        #    w[i] *= beta ** (1 - error)
+
         classifier_dict = {
             "theta": theta,
             "alpha": alpha,
             "parity": parity,
             "index": cache["index"],
-            "weights": w
         }
         classifier_list.append(classifier_dict)
     print(classifier_list)
