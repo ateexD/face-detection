@@ -7,7 +7,7 @@ from sklearn.metrics import classification_report
 from image_utils import *
 
 np.random.seed(42)
-data = pd.read_pickle("~/Downloads/training.pkl")
+data = pd.read_pickle("data/training.pkl")
 data = data[:200]
 
 features, feature_context = [], []
@@ -25,10 +25,10 @@ y = np.array(y)
 
 weak_classifiers = adaboost((x, y), 5)
 
-pickle.dump(weak_classifiers, open("weak_classifiers.pkl", 'wb'))
-pickle.dump(feature_context, open("train_feature_context.pkl", 'wb'))
+pickle.dump(weak_classifiers, open("results/weak_classifiers.pkl", 'wb'))
+pickle.dump(feature_context, open("results/train_feature_context.pkl", 'wb'))
 
-test = pd.read_pickle("~/Downloads/test.pkl")
+test = pd.read_pickle("data/test.pkl")
 test = test[:25]
 
 test_features = []
