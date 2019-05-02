@@ -1,5 +1,8 @@
 import numpy as np
 
+from tqdm import tqdm
+from pprint import pprint
+
 def get_theta_and_parity(feature_col: np.ndarray, y: np.ndarray, w: np.ndarray) -> tuple:
     """
 
@@ -78,8 +81,9 @@ def adaboost(data: list, T: int) -> dict:
     cache = {}
 
     classifier_list = []
-
-    for t in range(T):
+    
+    print("Building", T, "classifiers..")
+    for t in tqdm(range(T)):
         w /= np.sum(w)
         for i in range(x.shape[1]):
             feature_col = x[:, i]
@@ -102,18 +106,11 @@ def adaboost(data: list, T: int) -> dict:
         parity, theta = cache["parity"], cache["theta"]
 
 
-        pred = parity * theta > parity * x[:, cache["index"]] * 1.
+        pred = parity * theta > parity * x[:, cache["index"]]
+        pred = pred * 1.
+
         error = np.abs(pred - y)
         w = w * np.power(beta, 1 - error)
-
-
-        #for i in range(x.shape[0]):
-        #    if parity * theta > parity * x[i, cache["index"]]:
-        #        pred = 1
-        #    else:
-        #        pred = 0
-        #    error = np.abs(pred - y[i])
-        #    w[i] *= beta ** (1 - error)
 
         classifier_dict = {
             "theta": theta,
@@ -122,7 +119,8 @@ def adaboost(data: list, T: int) -> dict:
             "index": cache["index"],
         }
         classifier_list.append(classifier_dict)
-    print(classifier_list)
+    
+    pprint(classifier_list)
     return classifier_list
 
 

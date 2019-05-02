@@ -1,6 +1,5 @@
 import cv2
 import numpy as np
-from numba import jit
 
 from collections import Counter
 

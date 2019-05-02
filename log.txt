@@ -1,0 +1,16 @@
+Computing train features..
+Finished computing train features..
+
+
+Data Stats
+Train shape (1000, 63960)
+Y distribution Counter({0: 641, 1: 359})
+
+
+
+Building 5 classifiers..
+[{'alpha': 1.772906730367976, 'index': 11676, 'parity': 1, 'theta': -98.0},
+ {'alpha': 1.772906730367976, 'index': 11676, 'parity': 1, 'theta': -98.0},
+ {'alpha': 1.797418720601391, 'index': 55920, 'parity': 1, 'theta': -946.0},
+ {'alpha': 1.797418720601391, 'index': 55920, 'parity': 1, 'theta': -946.0},
+ {'alpha': 1.9885573422912322, 'index': 55878, 'parity': 1, 'theta': -61.0}]

@@ -100,8 +100,6 @@ venv.bak/
 # mkdocs documentation
 /site
 
-# pickle fules
-*.pkl
 
 # mypy
 .mypy_cache/
