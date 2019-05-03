@@ -9,8 +9,8 @@ class box:
         A box in the integral image, given start points and dimensions.
 
         Arguments:
-            x {int} -- x co-ordinate of origin 
-            y {int} -- y co-ordinate of origin 
+            x {int} -- x co-ordinate of origin
+            y {int} -- y co-ordinate of origin
             l {int} -- Length of box
             b {int} -- Width of box
         """
@@ -20,10 +20,8 @@ class box:
         self.b = b
 
     def __str__(self):
-        return "Box: x - " + str(self.x) + " y - " + str(self.y) + \
-             " l - " + str(self.l) + " b - " + str(self.b)
-
-
+        return "Box: \n\t(x, y):", "(" + str(self.x), ",", str(self.y) + ")",\
+                "\n\t(l, b):", "(" + str(self.l) + "," + str(self.b) + ")"
 
 def integral_image(img: np.ndarray) -> np.ndarray:
     """
@@ -32,7 +30,7 @@ def integral_image(img: np.ndarray) -> np.ndarray:
     Referred - https://stackoverflow.com/questions/25557973/efficient-summed-area-table-calculation-with-numpy
 
     Arguments:
-        img {np.ndarray} -- The image for which the integral image needs to 
+        img {np.ndarray} -- The image for which the integral image needs to
         be computed for
 
     Returns:
@@ -85,7 +83,7 @@ def get_integral_sum(integral_img: np.ndarray, x: int, y: int, h: int, w: int) -
     """
     feature = integral_img[y + h][x + w] + integral_img[y][x] - \
         integral_img[y + h][x] - integral_img[y][x + w]
-    
+
     try:
         _ = iter(feature)
         return np.sqrt(np.sum(feature ** 2))
@@ -97,7 +95,7 @@ def get_features(img: np.ndarray) -> list:
     This computes the features, given the rectangular boxes
 
     Arguments:
-        img {np.ndarray} -- Input image 
+        img {np.ndarray} -- Input image
 
     Returns:
         features {List} -- List of features computed
@@ -111,8 +109,8 @@ def get_features(img: np.ndarray) -> list:
 
     feature_shape = [[2, 1],
                      [1, 2],
-                     [3, 1], 
-                     [1, 3], 
+                     [3, 1],
+                     [1, 3],
                      [2, 2]]
 
     feature_dict = {}
@@ -143,7 +141,7 @@ def get_features(img: np.ndarray) -> list:
                             box2 = get_integral_sum_box(integral_img, box2)
 
                             features.append(box2 - box1)
-                        
+
                         if f == [3, 1]:
                             box1 = box(i, j, k // 3, l)
                             box2 = box(i + k // 3, j, k // 3, l)
@@ -154,9 +152,9 @@ def get_features(img: np.ndarray) -> list:
                             box1 = get_integral_sum_box(integral_img, box1)
                             box2 = get_integral_sum_box(integral_img, box2)
                             box3 = get_integral_sum_box(integral_img, box3)
-                            
+
                             features.append(box2 - box1 - box3)
-                        
+
                         if f == [1, 3]:
                             box1 = box(i, j, k, l // 3)
                             box2 = box(i, j + l // 3 , k, l // 3)
@@ -168,7 +166,7 @@ def get_features(img: np.ndarray) -> list:
                             box3 = get_integral_sum_box(integral_img, box3)
 
                             features.append(box2 - box1 - box3)
-                        
+
                         if f == [2, 2]:
                             box1 = box(i, j, k // 2, l // 2)
                             box2 = box(i + k // 2, j, k // 2, l // 2)
