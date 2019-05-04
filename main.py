@@ -18,7 +18,7 @@ features, feature_context = [], None
 y = []
 
 print("Computing train features..")
-for i in tqdm(range(len(data))):
+for i in (range(len(data))):
     f, c = get_features(data[i][0])
     features.append(f)
     
@@ -53,7 +53,7 @@ test_features = []
 y_test = []
 
 print("\n Computing test features..")
-for i in tqdm(range(len(test))):
+for i in (range(len(test))):
     f, _ = get_features(test[i][0])
     test_features.append(f)
     y_test.append(test[i][1])

@@ -83,7 +83,7 @@ def adaboost(data: list, T: int) -> dict:
     classifier_list = []
     
     print("Building", T, "classifiers..")
-    for t in tqdm(range(T)):
+    for t in (range(T)):
         w /= np.sum(w)
         for i in range(x.shape[1]):
             feature_col = x[:, i]
