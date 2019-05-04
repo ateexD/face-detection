@@ -20,8 +20,7 @@ class box:
         self.b = b
 
     def __str__(self):
-        return "Box: \n\t(x, y):", "(" + str(self.x), ",", str(self.y) + ")",\
-                "\n\t(l, b):", "(" + str(self.l) + "," + str(self.b) + ")"
+        return "Box: \n\t(x, y):" +  "(" + str(self.x) + "," + str(self.y) + ")" + "\n\t(l, b):" + "(" + str(self.l) + "," + str(self.b) + ")"
 
 def integral_image(img: np.ndarray) -> np.ndarray:
     """
