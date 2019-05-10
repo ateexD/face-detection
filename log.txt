@@ -1,0 +1,83 @@
+Computing train features..
+Finished computing train features..
+
+
+Data Stats
+Train shape (5000, 63960)
+Y distribution Counter({0: 3244, 1: 1756})
+
+
+
+Building 15 classifiers..
+at t = 0
+{'theta': -62.0, 'alpha': 1.7470699012411934, 'parity': 1, 'index': 11755} []
+at t = 1
+{'theta': -109.0, 'alpha': 1.2941662133540957, 'parity': 1, 'index': 24313} [{'theta': -62.0, 'alpha': 1.7470699012411934, 'parity': 1, 'index': 11755}]
+at t = 2
+{'theta': -124.0, 'alpha': 1.2249691037293238, 'parity': 1, 'index': 62871} [{'theta': -62.0, 'alpha': 1.7470699012411934, 'parity': 1, 'index': 11755}, {'theta': -109.0, 'alpha': 1.2941662133540957, 'parity': 1, 'index': 24313}]
+at t = 3
+{'theta': -440.0, 'alpha': 1.162685586054154, 'parity': 1, 'index': 24823} [{'theta': -62.0, 'alpha': 1.7470699012411934, 'parity': 1, 'index': 11755}, {'theta': -109.0, 'alpha': 1.2941662133540957, 'parity': 1, 'index': 24313}, {'theta': -124.0, 'alpha': 1.2249691037293238, 'parity': 1, 'index': 62871}]
+at t = 4
+{'theta': -43.0, 'alpha': 1.104552882807008, 'parity': 1, 'index': 15205} [{'theta': -62.0, 'alpha': 1.7470699012411934, 'parity': 1, 'index': 11755}, {'theta': -109.0, 'alpha': 1.2941662133540957, 'parity': 1, 'index': 24313}, {'theta': -124.0, 'alpha': 1.2249691037293238, 'parity': 1, 'index': 62871}, {'theta': -440.0, 'alpha': 1.162685586054154, 'parity': 1, 'index': 24823}]
+at t = 5
+{'theta': -11.0, 'alpha': 0.9344813748781683, 'parity': 1, 'index': 1117} [{'theta': -62.0, 'alpha': 1.7470699012411934, 'parity': 1, 'index': 11755}, {'theta': -109.0, 'alpha': 1.2941662133540957, 'parity': 1, 'index': 24313}, {'theta': -124.0, 'alpha': 1.2249691037293238, 'parity': 1, 'index': 62871}, {'theta': -440.0, 'alpha': 1.162685586054154, 'parity': 1, 'index': 24823}, {'theta': -43.0, 'alpha': 1.104552882807008, 'parity': 1, 'index': 15205}]
+at t = 6
+{'theta': -34.0, 'alpha': 0.8726681024804113, 'parity': 1, 'index': 1} [{'theta': -62.0, 'alpha': 1.7470699012411934, 'parity': 1, 'index': 11755}, {'theta': -109.0, 'alpha': 1.2941662133540957, 'parity': 1, 'index': 24313}, {'theta': -124.0, 'alpha': 1.2249691037293238, 'parity': 1, 'index': 62871}, {'theta': -440.0, 'alpha': 1.162685586054154, 'parity': 1, 'index': 24823}, {'theta': -43.0, 'alpha': 1.104552882807008, 'parity': 1, 'index': 15205}, {'theta': -11.0, 'alpha': 0.9344813748781683, 'parity': 1, 'index': 1117}]
+at t = 7
+{'theta': -5.0, 'alpha': 0.8885746967712528, 'parity': 1, 'index': 33878} [{'theta': -62.0, 'alpha': 1.7470699012411934, 'parity': 1, 'index': 11755}, {'theta': -109.0, 'alpha': 1.2941662133540957, 'parity': 1, 'index': 24313}, {'theta': -124.0, 'alpha': 1.2249691037293238, 'parity': 1, 'index': 62871}, {'theta': -440.0, 'alpha': 1.162685586054154, 'parity': 1, 'index': 24823}, {'theta': -43.0, 'alpha': 1.104552882807008, 'parity': 1, 'index': 15205}, {'theta': -11.0, 'alpha': 0.9344813748781683, 'parity': 1, 'index': 1117}, {'theta': -34.0, 'alpha': 0.8726681024804113, 'parity': 1, 'index': 1}]
+at t = 8
+{'theta': -16.0, 'alpha': 0.8107268101997901, 'parity': 1, 'index': 62878} [{'theta': -62.0, 'alpha': 1.7470699012411934, 'parity': 1, 'index': 11755}, {'theta': -109.0, 'alpha': 1.2941662133540957, 'parity': 1, 'index': 24313}, {'theta': -124.0, 'alpha': 1.2249691037293238, 'parity': 1, 'index': 62871}, {'theta': -440.0, 'alpha': 1.162685586054154, 'parity': 1, 'index': 24823}, {'theta': -43.0, 'alpha': 1.104552882807008, 'parity': 1, 'index': 15205}, {'theta': -11.0, 'alpha': 0.9344813748781683, 'parity': 1, 'index': 1117}, {'theta': -34.0, 'alpha': 0.8726681024804113, 'parity': 1, 'index': 1}, {'theta': -5.0, 'alpha': 0.8885746967712528, 'parity': 1, 'index': 33878}]
+at t = 9
+{'theta': -451.0, 'alpha': 0.7841145866123151, 'parity': 1, 'index': 6503} [{'theta': -62.0, 'alpha': 1.7470699012411934, 'parity': 1, 'index': 11755}, {'theta': -109.0, 'alpha': 1.2941662133540957, 'parity': 1, 'index': 24313}, {'theta': -124.0, 'alpha': 1.2249691037293238, 'parity': 1, 'index': 62871}, {'theta': -440.0, 'alpha': 1.162685586054154, 'parity': 1, 'index': 24823}, {'theta': -43.0, 'alpha': 1.104552882807008, 'parity': 1, 'index': 15205}, {'theta': -11.0, 'alpha': 0.9344813748781683, 'parity': 1, 'index': 1117}, {'theta': -34.0, 'alpha': 0.8726681024804113, 'parity': 1, 'index': 1}, {'theta': -5.0, 'alpha': 0.8885746967712528, 'parity': 1, 'index': 33878}, {'theta': -16.0, 'alpha': 0.8107268101997901, 'parity': 1, 'index': 62878}]
+at t = 10
+{'theta': -136.0, 'alpha': 0.8773285477736202, 'parity': 1, 'index': 55905} [{'theta': -62.0, 'alpha': 1.7470699012411934, 'parity': 1, 'index': 11755}, {'theta': -109.0, 'alpha': 1.2941662133540957, 'parity': 1, 'index': 24313}, {'theta': -124.0, 'alpha': 1.2249691037293238, 'parity': 1, 'index': 62871}, {'theta': -440.0, 'alpha': 1.162685586054154, 'parity': 1, 'index': 24823}, {'theta': -43.0, 'alpha': 1.104552882807008, 'parity': 1, 'index': 15205}, {'theta': -11.0, 'alpha': 0.9344813748781683, 'parity': 1, 'index': 1117}, {'theta': -34.0, 'alpha': 0.8726681024804113, 'parity': 1, 'index': 1}, {'theta': -5.0, 'alpha': 0.8885746967712528, 'parity': 1, 'index': 33878}, {'theta': -16.0, 'alpha': 0.8107268101997901, 'parity': 1, 'index': 62878}, {'theta': -451.0, 'alpha': 0.7841145866123151, 'parity': 1, 'index': 6503}]
+at t = 11
+{'theta': -34.0, 'alpha': 0.7864018832242661, 'parity': 1, 'index': 29816} [{'theta': -62.0, 'alpha': 1.7470699012411934, 'parity': 1, 'index': 11755}, {'theta': -109.0, 'alpha': 1.2941662133540957, 'parity': 1, 'index': 24313}, {'theta': -124.0, 'alpha': 1.2249691037293238, 'parity': 1, 'index': 62871}, {'theta': -440.0, 'alpha': 1.162685586054154, 'parity': 1, 'index': 24823}, {'theta': -43.0, 'alpha': 1.104552882807008, 'parity': 1, 'index': 15205}, {'theta': -11.0, 'alpha': 0.9344813748781683, 'parity': 1, 'index': 1117}, {'theta': -34.0, 'alpha': 0.8726681024804113, 'parity': 1, 'index': 1}, {'theta': -5.0, 'alpha': 0.8885746967712528, 'parity': 1, 'index': 33878}, {'theta': -16.0, 'alpha': 0.8107268101997901, 'parity': 1, 'index': 62878}, {'theta': -451.0, 'alpha': 0.7841145866123151, 'parity': 1, 'index': 6503}, {'theta': -136.0, 'alpha': 0.8773285477736202, 'parity': 1, 'index': 55905}]
+at t = 12
+{'theta': -62.0, 'alpha': 0.7711807113015314, 'parity': 1, 'index': 30002} [{'theta': -62.0, 'alpha': 1.7470699012411934, 'parity': 1, 'index': 11755}, {'theta': -109.0, 'alpha': 1.2941662133540957, 'parity': 1, 'index': 24313}, {'theta': -124.0, 'alpha': 1.2249691037293238, 'parity': 1, 'index': 62871}, {'theta': -440.0, 'alpha': 1.162685586054154, 'parity': 1, 'index': 24823}, {'theta': -43.0, 'alpha': 1.104552882807008, 'parity': 1, 'index': 15205}, {'theta': -11.0, 'alpha': 0.9344813748781683, 'parity': 1, 'index': 1117}, {'theta': -34.0, 'alpha': 0.8726681024804113, 'parity': 1, 'index': 1}, {'theta': -5.0, 'alpha': 0.8885746967712528, 'parity': 1, 'index': 33878}, {'theta': -16.0, 'alpha': 0.8107268101997901, 'parity': 1, 'index': 62878}, {'theta': -451.0, 'alpha': 0.7841145866123151, 'parity': 1, 'index': 6503}, {'theta': -136.0, 'alpha': 0.8773285477736202, 'parity': 1, 'index': 55905}, {'theta': -34.0, 'alpha': 0.7864018832242661, 'parity': 1, 'index': 29816}]
+at t = 13
+{'theta': -10.0, 'alpha': 0.8056026020430589, 'parity': 1, 'index': 62460} [{'theta': -62.0, 'alpha': 1.7470699012411934, 'parity': 1, 'index': 11755}, {'theta': -109.0, 'alpha': 1.2941662133540957, 'parity': 1, 'index': 24313}, {'theta': -124.0, 'alpha': 1.2249691037293238, 'parity': 1, 'index': 62871}, {'theta': -440.0, 'alpha': 1.162685586054154, 'parity': 1, 'index': 24823}, {'theta': -43.0, 'alpha': 1.104552882807008, 'parity': 1, 'index': 15205}, {'theta': -11.0, 'alpha': 0.9344813748781683, 'parity': 1, 'index': 1117}, {'theta': -34.0, 'alpha': 0.8726681024804113, 'parity': 1, 'index': 1}, {'theta': -5.0, 'alpha': 0.8885746967712528, 'parity': 1, 'index': 33878}, {'theta': -16.0, 'alpha': 0.8107268101997901, 'parity': 1, 'index': 62878}, {'theta': -451.0, 'alpha': 0.7841145866123151, 'parity': 1, 'index': 6503}, {'theta': -136.0, 'alpha': 0.8773285477736202, 'parity': 1, 'index': 55905}, {'theta': -34.0, 'alpha': 0.7864018832242661, 'parity': 1, 'index': 29816}, {'theta': -62.0, 'alpha': 0.7711807113015314, 'parity': 1, 'index': 30002}]
+at t = 14
+{'theta': 73.0, 'alpha': 0.8604092225934052, 'parity': 1, 'index': 14500} [{'theta': -62.0, 'alpha': 1.7470699012411934, 'parity': 1, 'index': 11755}, {'theta': -109.0, 'alpha': 1.2941662133540957, 'parity': 1, 'index': 24313}, {'theta': -124.0, 'alpha': 1.2249691037293238, 'parity': 1, 'index': 62871}, {'theta': -440.0, 'alpha': 1.162685586054154, 'parity': 1, 'index': 24823}, {'theta': -43.0, 'alpha': 1.104552882807008, 'parity': 1, 'index': 15205}, {'theta': -11.0, 'alpha': 0.9344813748781683, 'parity': 1, 'index': 1117}, {'theta': -34.0, 'alpha': 0.8726681024804113, 'parity': 1, 'index': 1}, {'theta': -5.0, 'alpha': 0.8885746967712528, 'parity': 1, 'index': 33878}, {'theta': -16.0, 'alpha': 0.8107268101997901, 'parity': 1, 'index': 62878}, {'theta': -451.0, 'alpha': 0.7841145866123151, 'parity': 1, 'index': 6503}, {'theta': -136.0, 'alpha': 0.8773285477736202, 'parity': 1, 'index': 55905}, {'theta': -34.0, 'alpha': 0.7864018832242661, 'parity': 1, 'index': 29816}, {'theta': -62.0, 'alpha': 0.7711807113015314, 'parity': 1, 'index': 30002}, {'theta': -10.0, 'alpha': 0.8056026020430589, 'parity': 1, 'index': 62460}]
+at t = 15
+{'theta': -373.0, 'alpha': 0.7935003057869289, 'parity': 1, 'index': 39065} [{'theta': -62.0, 'alpha': 1.7470699012411934, 'parity': 1, 'index': 11755}, {'theta': -109.0, 'alpha': 1.2941662133540957, 'parity': 1, 'index': 24313}, {'theta': -124.0, 'alpha': 1.2249691037293238, 'parity': 1, 'index': 62871}, {'theta': -440.0, 'alpha': 1.162685586054154, 'parity': 1, 'index': 24823}, {'theta': -43.0, 'alpha': 1.104552882807008, 'parity': 1, 'index': 15205}, {'theta': -11.0, 'alpha': 0.9344813748781683, 'parity': 1, 'index': 1117}, {'theta': -34.0, 'alpha': 0.8726681024804113, 'parity': 1, 'index': 1}, {'theta': -5.0, 'alpha': 0.8885746967712528, 'parity': 1, 'index': 33878}, {'theta': -16.0, 'alpha': 0.8107268101997901, 'parity': 1, 'index': 62878}, {'theta': -451.0, 'alpha': 0.7841145866123151, 'parity': 1, 'index': 6503}, {'theta': -136.0, 'alpha': 0.8773285477736202, 'parity': 1, 'index': 55905}, {'theta': -34.0, 'alpha': 0.7864018832242661, 'parity': 1, 'index': 29816}, {'theta': -62.0, 'alpha': 0.7711807113015314, 'parity': 1, 'index': 30002}, {'theta': -10.0, 'alpha': 0.8056026020430589, 'parity': 1, 'index': 62460}, {'theta': 73.0, 'alpha': 0.8604092225934052, 'parity': 1, 'index': 14500}]
+[{'alpha': 1.7470699012411934, 'index': 11755, 'parity': 1, 'theta': -62.0},
+ {'alpha': 1.2941662133540957, 'index': 24313, 'parity': 1, 'theta': -109.0},
+ {'alpha': 1.2249691037293238, 'index': 62871, 'parity': 1, 'theta': -124.0},
+ {'alpha': 1.162685586054154, 'index': 24823, 'parity': 1, 'theta': -440.0},
+ {'alpha': 1.104552882807008, 'index': 15205, 'parity': 1, 'theta': -43.0},
+ {'alpha': 0.9344813748781683, 'index': 1117, 'parity': 1, 'theta': -11.0},
+ {'alpha': 0.8726681024804113, 'index': 1, 'parity': 1, 'theta': -34.0},
+ {'alpha': 0.8885746967712528, 'index': 33878, 'parity': 1, 'theta': -5.0},
+ {'alpha': 0.8107268101997901, 'index': 62878, 'parity': 1, 'theta': -16.0},
+ {'alpha': 0.7841145866123151, 'index': 6503, 'parity': 1, 'theta': -451.0},
+ {'alpha': 0.8773285477736202, 'index': 55905, 'parity': 1, 'theta': -136.0},
+ {'alpha': 0.7864018832242661, 'index': 29816, 'parity': 1, 'theta': -34.0},
+ {'alpha': 0.7711807113015314, 'index': 30002, 'parity': 1, 'theta': -62.0},
+ {'alpha': 0.8056026020430589, 'index': 62460, 'parity': 1, 'theta': -10.0},
+ {'alpha': 0.8604092225934052, 'index': 14500, 'parity': 1, 'theta': 73.0},
+ {'alpha': 0.7935003057869289, 'index': 39065, 'parity': 1, 'theta': -373.0}]
+Storing weak classifiers..
+
+ Computing test features..
+
+
+Data Stats
+Y Test distribution Counter({0: 983, 1: 17})
+
+
+
+
+Finished computing test features..
+
+Testing out the model..
+Accuracy: 0.961
+              precision    recall  f1-score   support
+
+           0       0.98      0.98      0.98       976
+           1       0.06      0.04      0.05        24
+
+   micro avg       0.96      0.96      0.96      1000
+   macro avg       0.52      0.51      0.51      1000
+weighted avg       0.95      0.96      0.96      1000
+

@@ -21,31 +21,31 @@ y = []
 
 print("Computing train features..")
 for i in (range(len(data))):
-    f, c = get_features(data[i][0])
-    features.append(f)
-    
     if feature_context is None:
-        feature_context = c
-
+        _, feature_context = get_features(data[i][0])
     y.append(data[i][1])
 
 print("Finished computing train features..")
 
-x = np.array(features)
+x = np.load("/data/ateendra/features.npy")
+
+# x = np.array(features)
 y = np.array(y)
+
+np.save("features.npy", x)
 
 print("\n\nData Stats")
 print("Train shape", x.shape)
 print("Y distribution", Counter(y.tolist()))
 print("\n\n")
 
-weak_classifiers = adaboost((x, y), 5)
+weak_classifiers = adaboost((x, y), 15)
 
 for w_c in weak_classifiers:
     w_c["feature_context"] = feature_context[w_c["index"]]
 
 print("Storing weak classifiers..")
-pickle.dump(weak_classifiers, open("results/weak_classifiers.pkl", 'wb'))
+pickle.dump(weak_classifiers, open("results/weak_classifiers_15.pkl", 'wb'))
 
 test = pd.read_pickle("data/test.pkl")
 np.random.shuffle(test)

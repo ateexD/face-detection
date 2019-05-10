@@ -76,23 +76,31 @@ def adaboost(data: list, T: int) -> dict:
     w[y == 1] *= 1 / (2. * l + 1)
     w[y == 0] *= 1 / (2. * m + 1)
 
-    error_so_far = 1e10
-
-    cache = {}
 
     classifier_list = []
+    t = 0
     
+    def can_continue(i, classifier_list):
+        for wc in classifier_list:
+            if wc["index"] == i:
+                return False
+        return True
+
     print("Building", T, "classifiers..")
-    for t in (range(T)):
+    while t <= T:
+        print ("at t =", t)
+        cache = {}
+        error_so_far = 1e10
         w /= np.sum(w)
         for i in range(x.shape[1]):
+            if not can_continue(i, classifier_list):
+                continue
             feature_col = x[:, i]
             theta, parity = get_theta_and_parity(feature_col, y, w)
-            error = 0.
 
             parity_arr = (parity * theta > parity * feature_col) * 1.
             error = np.sum(np.abs(parity_arr - y) * w)
-
+            
             if error < error_so_far:
                 cache["theta"] = theta
                 cache["parity"] = parity
@@ -118,10 +126,9 @@ def adaboost(data: list, T: int) -> dict:
             "parity": parity,
             "index": cache["index"],
         }
+        print(classifier_dict, classifier_list)
+        t += 1
         classifier_list.append(classifier_dict)
     
     pprint(classifier_list)
     return classifier_list
-
-
-
