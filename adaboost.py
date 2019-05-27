@@ -17,14 +17,16 @@ def get_theta_and_parity(feature_col: np.ndarray, y: np.ndarray, w: np.ndarray) 
     feature_col, y = feature_col.copy()[sorted_indices], y.copy()[sorted_indices]
     w = w.copy()[sorted_indices]
 
+    num_examples = len(y)
+
     # Referred from https://stackoverflow.com/questions/39109848/viola-jones-threshold-value-haar-features-error-value
     # and https://stackoverflow.com/questions/9777282/the-best-way-to-calculate-the-best-threshold-with-p-viola-m-jones-framework
-    
+
     total_pos_sum, total_neg_sum = 0, 0
     running_pos_sum, running_neg_sum = 0, 0
-    running_pos_sum_list, running_neg_sum_list = [0] * len(y), [0] * len(y)
+    running_pos_sum_list, running_neg_sum_list = [0] * num_examples, [0] * num_examples
 
-    for i in range(len(y)):
+    for i in range(num_examples):
         if y[i] == 0:
             running_neg_sum += w[i]
             total_neg_sum += w[i]
@@ -37,7 +39,7 @@ def get_theta_and_parity(feature_col: np.ndarray, y: np.ndarray, w: np.ndarray) 
     error = 1e10
     theta, parity = 0, 0
 
-    for i in range(len(y)):
+    for i in range(num_examples):
         error_neg = running_pos_sum_list[i] + total_neg_sum - running_neg_sum_list[i]
         error_pos = running_neg_sum_list[i] + total_pos_sum - running_pos_sum_list[i]
         if error_neg < error:
@@ -76,7 +78,7 @@ def adaboost(data: list, T: int) -> dict:
 
     classifier_list = []
     t = 0
-    
+
     def can_continue(i, classifier_list):
         for wc in classifier_list:
             if wc["index"] == i:
@@ -97,7 +99,7 @@ def adaboost(data: list, T: int) -> dict:
 
             parity_arr = (parity * theta > parity * feature_col) * 1.
             error = np.sum(np.abs(parity_arr - y) * w)
-            
+
             if error < error_so_far:
                 cache["theta"] = theta
                 cache["parity"] = parity
@@ -126,6 +128,6 @@ def adaboost(data: list, T: int) -> dict:
         print(classifier_dict, classifier_list)
         t += 1
         classifier_list.append(classifier_dict)
-    
+
     print(classifier_list)
     return classifier_list
