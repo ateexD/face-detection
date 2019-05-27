@@ -1,8 +1,5 @@
 import numpy as np
 
-from tqdm import tqdm
-from pprint import pprint
-
 def get_theta_and_parity(feature_col: np.ndarray, y: np.ndarray, w: np.ndarray) -> tuple:
     """
 
@@ -21,34 +18,34 @@ def get_theta_and_parity(feature_col: np.ndarray, y: np.ndarray, w: np.ndarray) 
     w = w.copy()[sorted_indices]
 
     # Referred from https://stackoverflow.com/questions/39109848/viola-jones-threshold-value-haar-features-error-value
-    s_p, s_m, t_p, t_m = 0, 0, 0, 0
-
-    s_p_list, s_m_list = [], []
+    # and https://stackoverflow.com/questions/9777282/the-best-way-to-calculate-the-best-threshold-with-p-viola-m-jones-framework
+    
+    total_pos_sum, total_neg_sum = 0, 0
+    running_pos_sum, running_neg_sum = 0, 0
+    running_pos_sum_list, running_neg_sum_list = [0] * len(y), [0] * len(y)
 
     for i in range(len(y)):
         if y[i] == 0:
-            s_m += w[i]
-            t_m += w[i]
+            running_neg_sum += w[i]
+            total_neg_sum += w[i]
         else:
-            s_p += w[i]
-            t_m += w[i]
-        s_m_list.append(s_m)
-        s_p_list.append(s_p)
+            running_pos_sum += w[i]
+            total_pos_sum += w[i]
+        running_neg_sum_list[i] = running_neg_sum
+        running_pos_sum_list[i] = running_pos_sum
 
     error = 1e10
     theta, parity = 0, 0
 
     for i in range(len(y)):
-        e1 = s_p_list[i] + t_m - s_m_list[i]
-        e2 = s_m_list[i] + t_p - s_p_list[i]
-        if e1 < error:
-            error = e1
-            theta = feature_col[i]
-            parity = -1
-        elif e2 < error:
-            error = e2
-            theta = feature_col[i]
-            parity = 1
+        error_neg = running_pos_sum_list[i] + total_neg_sum - running_neg_sum_list[i]
+        error_pos = running_neg_sum_list[i] + total_pos_sum - running_pos_sum_list[i]
+        if error_neg < error:
+            error = error_neg
+            theta, parity = feature_col[i], -1
+        elif error_pos < error:
+            error = error_pos
+            theta, parity = feature_col[i], 1
     return (theta, parity)
 
 
@@ -130,5 +127,5 @@ def adaboost(data: list, T: int) -> dict:
         t += 1
         classifier_list.append(classifier_dict)
     
-    pprint(classifier_list)
+    print(classifier_list)
     return classifier_list
